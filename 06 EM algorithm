@@ -1,0 +1,44 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct 11 14:38:42 2016
+
+@author: Hui
+"""
+
+# Derive an EM algorithm to find the maximum likelihood estimate of θ where θ is a parameter in the multinomial distribution: 
+#(x1,x2,x3,x4) ~ (n; 0.25theta, 0.25(2+theta), 0.5(1-2theta), 0.5theta)
+
+
+from numpy import *
+from matplotlib import pyplot
+
+n = 100
+x = [6, 52, 28, 14]
+
+# EM procedure
+theta = zeros(100)
+
+theta[0] = 0.5
+nth = (theta[0]/(2+theta[0])*x[1] + x[0]+ x[3])/(2*(theta[0]/(2+theta[0])*x[1]+x[0]+x[2]+x[3]))
+i = 0;
+while (abs(theta[i]-nth)>1e-6):
+    nth = theta[i]
+    theta[i+1] = (theta[i]/(2+theta[i])*x[1] + x[0]+ x[3])/   \
+                  (2*(theta[i]/(2+theta[i])*x[1]+x[0]+x[2]+x[3]))
+    i = i+1
+
+theta = theta[0:i+1]
+# plot the estimate
+pyplot.subplot(211)
+pyplot.plot(range(0,i+1), theta[0:i+1], 'b-*')
+
+# compute the log-likelihood
+ll = zeros(i+1)
+for k in range(0,i+1):
+    ll[k] = x[1]*log(2+theta[k]) + (x[0]+x[3])*log(theta[k]) + x[2]*log(1-2*theta[k])
+
+# plot the log-likelihood
+pyplot.subplot(212);
+pyplot.plot(range(0, i+1), ll[:], 'ro-')
+
+pyplot.show()
