@@ -1,5 +1,11 @@
-#Using Newton-Raphson method to compute a root of the following function :f(x) = (0.9sin(x) − x)
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct  3 21:39:28 2016
 
+@author: Hui
+"""
+
+#Using Newton-Raphson method to compute a root of the following function :f(x) = (0.9sin(x) − x)
 
 from numpy import *
 from matplotlib import pyplot
