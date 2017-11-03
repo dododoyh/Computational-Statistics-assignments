@@ -39,3 +39,5 @@ def rowhouse(X,v):
     w = (X.T*v)*beta
     X = X + v*w.T
     return X
+
+
