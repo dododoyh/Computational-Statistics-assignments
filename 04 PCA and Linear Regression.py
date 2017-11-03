@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep 26 00:14:53 2016
+
+@author: Hui
+"""
 
 #use principal component analysis to reduce n to d and then solve for the coefficients b in linear regression
 #Compute and plot the SSE for values of d ranging from 10 to 100 in the steps of 10
